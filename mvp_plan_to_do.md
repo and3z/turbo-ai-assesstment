@@ -72,7 +72,7 @@ o puntuales.
       `Last Name`), dirección de envío, email del proveedor e información de
       costos/márgenes. Los datos pueden dejarse incompletos y ser salvados para
       ser rellenados más tarde.
-- [ ] **Integración de APIs:** Escribir los endpoints HTTP para realizar las
+- [x] **Integración de APIs:** Escribir los endpoints HTTP para realizar las
       inserciones o actualizaciones de estos datos en base de datos.
 
 ## Fase 5: El "Puente" - Importación Masiva mediante CSV (US2)
