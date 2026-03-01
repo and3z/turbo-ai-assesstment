@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Directory Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer components {
+            .btn-vendor-status-disabled {
+                @apply flex items-center justify-center gap-2 w-36 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-600 cursor-not-allowed border border-slate-200 dark:border-slate-700;
+            }
+            .btn-vendor-status-active {
+                @apply flex items-center justify-center gap-2 w-36 px-3 py-1.5 rounded-lg text-xs font-bold bg-primary text-white hover:bg-primary/90 transition-all shadow-sm border border-transparent;
+            }
+            .status-badge-sent {
+                @apply inline-flex items-center justify-center gap-1.5 w-36 px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/50;
+            }
+            .nav-link {
+                @apply text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors;
+            }
+            .nav-link-active {
+                @apply text-sm font-semibold text-primary;
+            }
+            .segmented-control {
+                @apply flex bg-slate-100 dark:bg-slate-800 p-1 rounded-lg border border-slate-200 dark:border-slate-700;
+            }
+            .segmented-item {
+                @apply px-4 py-1.5 text-xs font-bold rounded-md transition-all;
+            }
+            .segmented-item-active {
+                @apply bg-white dark:bg-slate-700 text-primary shadow-sm;
+            }
+            .segmented-item-inactive {
+                @apply text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm">
+<div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-xl shadow-2xl overflow-hidden border border-slate-200 dark:border-slate-800">
+<div class="px-6 py-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Confirm Order Shipment</h3>
+<button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="p-6">
+<div class="grid grid-cols-2 gap-y-4 gap-x-6 mb-6">
+<div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">Order ID</span>
+<span class="text-sm font-semibold text-slate-900 dark:text-white">#ORD-7719</span>
+</div>
+<div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">Patient Name</span>
+<span class="text-sm font-semibold text-slate-900 dark:text-white">Robert Brown</span>
+</div>
+<div class="col-span-2">
+<span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">Product Details</span>
+<span class="text-sm font-semibold text-slate-900 dark:text-white">Latex Gloves (S/M/L) - Bulk Pack (500 units)</span>
+</div>
+<div class="col-span-2">
+<span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">Vendor Name</span>
+<span class="text-sm font-semibold text-slate-900 dark:text-white">Global Medical Supply</span>
+</div>
+</div>
+<div class="bg-amber-50 dark:bg-amber-950/20 border border-amber-100 dark:border-amber-900/50 p-4 rounded-lg flex gap-3">
+<span class="material-symbols-outlined text-amber-600 dark:text-amber-500 shrink-0">warning</span>
+<p class="text-xs leading-relaxed text-amber-800 dark:text-amber-400 font-medium">
+                    Once confirmed, this order will be marked as sent and the vendor will be notified. This action is final.
+                </p>
+</div>
+</div>
+<div class="px-6 py-4 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-100 dark:border-slate-800 flex justify-end gap-3">
+<button class="px-4 py-2 text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition-colors">
+                Cancel
+            </button>
+<button class="px-5 py-2 text-sm font-bold bg-primary text-white rounded-lg hover:bg-primary/90 shadow-sm transition-all">
+                Confirm &amp; Send
+            </button>
+</div>
+</div>
+</div>
+<div class="flex flex-col min-h-screen">
+<header class="sticky top-0 z-50 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-6 py-3 flex items-center justify-between">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-3xl font-bold">medical_services</span>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">MedSupp</h1>
+</div>
+<div class="relative w-80">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-slate-500" placeholder="Search orders, patients, or vendors..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex items-center gap-6">
+<a class="nav-link" href="#">Inventory</a>
+<a class="nav-link-active" href="#">Orders</a>
+<a class="nav-link" href="#">Vendors</a>
+<a class="nav-link" href="#">Shipments</a>
+<a class="nav-link" href="#">Reports</a>
+</nav>
+<div class="h-6 w-px bg-slate-200 dark:bg-slate-700"></div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 px-4 py-2 rounded-lg text-sm font-bold hover:bg-slate-200 transition-all">
+<span class="material-symbols-outlined text-lg">add</span>Import CSV</button>
+<button class="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-primary/90 transition-all shadow-sm">
+<span class="material-symbols-outlined text-lg">upload_file</span>
+                    Create Order</button>
+</div>
+<div class="size-9 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary">account_circle</span>
+</div>
+</div>
+</header>
+<main class="flex-1 max-w-[1400px] mx-auto w-full p-6">
+<div class="mb-8">
+<h2 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Order Directory</h2>
+<p class="text-slate-500 dark:text-slate-400 mt-1">Manage and track high-density medical supply distributions across regional vendors.</p>
+</div>
+<div class="flex items-center justify-between mb-6 border-b border-slate-200 dark:border-slate-800">
+<div class="flex gap-8">
+<button class="pb-4 border-b-2 border-primary text-primary text-sm font-bold">All Orders</button>
+<button class="pb-4 border-b-2 border-transparent text-slate-500 dark:text-slate-400 text-sm font-bold hover:text-slate-700 transition-all">Pending Payment</button>
+<button class="pb-4 border-b-2 border-transparent text-slate-500 dark:text-slate-400 text-sm font-bold hover:text-slate-700 transition-all">Awaiting Shipment</button>
+<button class="pb-4 border-b-2 border-transparent text-slate-500 dark:text-slate-400 text-sm font-bold hover:text-slate-700 transition-all">Completed</button>
+</div>
+<div class="flex items-center gap-4 mb-3">
+<div class="segmented-control">
+<button class="segmented-item segmented-item-active">Operations</button>
+<button class="segmented-item segmented-item-inactive">Financials</button>
+</div>
+<button class="flex items-center gap-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-300">
+                    Date: Last 30 Days
+                    <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50/50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Order ID</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Patient Name</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Product Details</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Vendor Name</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Payment Status</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Vendor Status</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 text-sm font-semibold text-slate-900 dark:text-white">#ORD-7721</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Johnathan Doe</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">N95 Masks (50ct)</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">HealthCorp Industries</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">
+<span class="size-1.5 rounded-full bg-amber-500"></span>
+                                Waiting
+                            </span>
+</td>
+<td class="px-6 py-4">
+<button class="btn-vendor-status-disabled" disabled="">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+                                Waiting
+                            </button>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary font-bold text-xs uppercase tracking-widest hover:underline">Edit</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 text-sm font-semibold text-slate-900 dark:text-white">#ORD-7720</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Jane Smith</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Insulin Syringes (Box)</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">MedTech Solutions</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
+<span class="size-1.5 rounded-full bg-emerald-500"></span>
+                                Paid
+                            </span>
+</td>
+<td class="px-6 py-4">
+<div class="status-badge-sent">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                                Sent
+                            </div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary font-bold text-xs uppercase tracking-widest hover:underline">Edit</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 text-sm font-semibold text-slate-900 dark:text-white">#ORD-7719</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Robert Brown</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Latex Gloves (S/M/L)</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Global Medical Supply</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
+<span class="size-1.5 rounded-full bg-emerald-500"></span>
+                                Paid
+                            </span>
+</td>
+<td class="px-6 py-4">
+<button class="btn-vendor-status-active">
+                                Send</button>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary font-bold text-xs uppercase tracking-widest hover:underline">Edit</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 text-sm font-semibold text-slate-900 dark:text-white">#ORD-7718</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Emily White</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Wheelchair XL (Manual)</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Mobility Plus Ltd</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">
+<span class="size-1.5 rounded-full bg-amber-500"></span>
+                                Waiting
+                            </span>
+</td>
+<td class="px-6 py-4">
+<button class="btn-vendor-status-disabled" disabled="">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+                                Waiting
+                            </button>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary font-bold text-xs uppercase tracking-widest hover:underline">Edit</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 text-sm font-semibold text-slate-900 dark:text-white">#ORD-7717</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Marcus Johnson</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">BP Monitor Pro v4</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">MedTech Solutions</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
+<span class="size-1.5 rounded-full bg-emerald-500"></span>
+                                Paid
+                            </span>
+</td>
+<td class="px-6 py-4">
+<div class="status-badge-sent">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                                Sent
+                            </div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary font-bold text-xs uppercase tracking-widest hover:underline">Edit</button>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="px-6 py-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50/30 dark:bg-slate-800/20">
+<span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Showing 5 of 1,248 orders</span>
+<div class="flex items-center gap-2">
+<button class="p-1 rounded hover:bg-slate-200 dark:hover:bg-slate-700 disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<span class="text-xs font-bold px-2 py-1 bg-primary text-white rounded">1</span>
+<span class="text-xs font-medium px-2 py-1 text-slate-600 dark:text-slate-400">2</span>
+<span class="text-xs font-medium px-2 py-1 text-slate-600 dark:text-slate-400">3</span>
+<button class="p-1 rounded hover:bg-slate-200 dark:hover:bg-slate-700">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-auto border-t border-slate-200 dark:border-slate-800 px-6 py-4 flex items-center justify-between text-slate-400 dark:text-slate-500 text-xs">
+<div class="flex items-center gap-4">
+<span>© 2024 MedSupp Distribution Systems</span>
+<a class="hover:text-primary" href="#">System Status</a>
+<a class="hover:text-primary" href="#">Security Protocol</a>
+</div>
+<div class="flex items-center gap-4">
+<span>v2.4.1-stable</span>
+</div>
+</footer>
+</div>
+
+</body></html>

@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --font-body: "Roboto", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Roboto", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --color-primary: #3a9aff;
+  --color-primary-strong: #1f82ea;
+  --color-primary-soft: #eef6ff;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background:
+    radial-gradient(circle at top left, rgba(58, 154, 255, 0.16), transparent 38%),
+    radial-gradient(circle at 85% 15%, rgba(249, 115, 22, 0.12), transparent 22%),
+    linear-gradient(180deg, #f8fbff 0%, #eef4fb 60%, #f8fafc 100%);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: #0f172a;
+  font-family: var(--font-body);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(58, 154, 255, 0.12), transparent 26%),
+    radial-gradient(circle at 80% 20%, rgba(249, 115, 22, 0.08), transparent 20%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(248, 250, 252, 0.98));
+  background-attachment: fixed;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  opacity: 0.4;
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.8), transparent);
+}
+
+::selection {
+  color: #082f49;
+  background: rgba(58, 154, 255, 0.25);
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(58, 154, 255, 0.5) transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(58, 154, 255, 0.35);
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@layer components {
+  .surface-card {
+    @apply rounded-2xl border border-slate-200 bg-white;
+    padding: var(--space-6);
+  }
+
+  .field-input {
+    @apply w-full rounded-2xl border border-slate-200 bg-white text-sm text-ink outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/15 disabled:cursor-not-allowed disabled:bg-slate-100;
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .section-stack {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .inline-cluster {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+}

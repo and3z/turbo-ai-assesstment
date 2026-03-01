@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Detail &amp; Edit Drawer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#ffffff",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }.custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 font-display min-h-screen overflow-hidden">
+<div class="fixed inset-0 bg-slate-900/40 backdrop-blur-[2px] z-30">
+<div class="p-8">
+<div class="h-8 w-48 bg-slate-300/50 rounded mb-8"></div>
+<div class="grid grid-cols-4 gap-4 mb-8">
+<div class="h-24 bg-slate-300/50 rounded-xl"></div>
+<div class="h-24 bg-slate-300/50 rounded-xl"></div>
+<div class="h-24 bg-slate-300/50 rounded-xl"></div>
+<div class="h-24 bg-slate-300/50 rounded-xl"></div>
+</div>
+<div class="h-[60vh] bg-slate-300/50 rounded-xl"></div>
+</div>
+</div>
+<div class="fixed inset-y-0 right-0 z-50 flex max-w-full">
+<div class="w-screen max-w-[40vw] flex flex-col bg-background-light dark:bg-background-dark shadow-[-10px_0_30px_-15px_rgba(0,0,0,0.2)]">
+<div class="sticky top-0 z-10 flex flex-wrap justify-between items-center gap-3 p-6 border-b border-slate-100 dark:border-slate-800 bg-background-light dark:bg-background-dark">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">receipt_long</span>
+<h1 class="text-slate-900 dark:text-slate-100 tracking-tight text-xl font-bold leading-tight">Order Detail &amp; Edit</h1>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-normal leading-normal">Order ID: #MED-77291 • Last updated 2 hours ago</p>
+</div>
+<button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+<span class="material-symbols-outlined text-2xl">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar">
+<div class="p-6 space-y-10">
+<section>
+<div class="flex items-center gap-2 mb-5">
+<span class="material-symbols-outlined text-primary/70 text-xl">person</span>
+<h2 class="text-slate-900 dark:text-slate-100 text-base font-bold leading-tight tracking-tight uppercase tracking-wider">Patient &amp; Shipping</h2>
+</div>
+<div class="grid grid-cols-1 gap-5">
+<div class="grid grid-cols-2 gap-4">
+<label class="flex flex-col gap-1.5">
+<span class="text-slate-600 dark:text-slate-400 text-xs font-semibold">First Name</span>
+<input class="form-input flex w-full rounded-lg text-slate-900 dark:text-slate-100 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-1 focus:ring-primary h-10 px-3 text-sm" type="text" value="John"/>
+</label>
+<label class="flex flex-col gap-1.5">
+<span class="text-slate-600 dark:text-slate-400 text-xs font-semibold">Last Name</span>
+<input class="form-input flex w-full rounded-lg text-slate-900 dark:text-slate-100 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-1 focus:ring-primary h-10 px-3 text-sm" type="text" value="Doe"/>
+</label>
+</div>
+<label class="flex flex-col gap-1.5">
+<span class="text-slate-600 dark:text-slate-400 text-xs font-semibold">Shipping Address</span>
+<textarea class="form-input flex w-full min-h-[80px] rounded-lg text-slate-900 dark:text-slate-100 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-1 focus:ring-primary p-3 text-sm">123 Medical Plaza, Suite 405, Austin, TX 78701</textarea>
+</label>
+</div>
+</section>
+<section>
+<div class="flex items-center gap-2 mb-5">
+<span class="material-symbols-outlined text-primary/70 text-xl">inventory_2</span>
+<h2 class="text-slate-900 dark:text-slate-100 text-base font-bold leading-tight tracking-tight uppercase tracking-wider">Product &amp; Vendor</h2>
+</div>
+<div class="grid grid-cols-1 gap-5">
+<label class="flex flex-col gap-1.5">
+<span class="text-slate-600 dark:text-slate-400 text-xs font-semibold">Product Name</span>
+<input class="form-input flex w-full rounded-lg text-slate-900 dark:text-slate-100 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-1 focus:ring-primary h-10 px-3 text-sm" type="text" value="Standard Wheelchair X-200"/>
+</label>
+<div class="grid grid-cols-2 gap-4">
+<label class="flex flex-col gap-1.5">
+<span class="text-slate-600 dark:text-slate-400 text-xs font-semibold">Vendor Name</span>
+<input class="form-input flex w-full rounded-lg text-slate-900 dark:text-slate-100 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-1 focus:ring-primary h-10 px-3 text-sm" type="text" value="MedTech Solutions"/>
+</label>
+<label class="flex flex-col gap-1.5">
+<span class="text-slate-600 dark:text-slate-400 text-xs font-semibold">Vendor Email</span>
+<input class="form-input flex w-full rounded-lg text-slate-900 dark:text-slate-100 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-1 focus:ring-primary h-10 px-3 text-sm" type="email" value="orders@medtech.com"/>
+</label>
+</div>
+<label class="flex flex-col gap-1.5">
+<span class="text-slate-600 dark:text-slate-400 text-xs font-semibold">Product Details &amp; Specs</span>
+<textarea class="form-input flex w-full min-h-[80px] rounded-lg text-slate-900 dark:text-slate-100 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-1 focus:ring-primary p-3 text-sm">Lightweight aluminum frame, 18-inch seat, foldable, black upholstery.</textarea>
+</label>
+</div>
+</section>
+<section class="bg-slate-50 dark:bg-slate-800/40 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+<div class="flex items-center gap-2 mb-5">
+<span class="material-symbols-outlined text-primary text-xl">payments</span>
+<h2 class="text-slate-900 dark:text-slate-100 text-base font-bold leading-tight tracking-tight uppercase tracking-wider">Financials</h2>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<label class="flex flex-col gap-1.5">
+<span class="text-slate-600 dark:text-slate-400 text-[10px] font-bold uppercase tracking-widest">Cost per Unit</span>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">$</span>
+<input class="form-input flex w-full rounded-lg text-slate-900 dark:text-slate-100 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-1 focus:ring-primary h-10 pl-7 pr-3 text-sm" type="number" value="1250.00"/>
+</div>
+</label>
+<label class="flex flex-col gap-1.5">
+<span class="text-slate-600 dark:text-slate-400 text-[10px] font-bold uppercase tracking-widest">Billable Amount</span>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">$</span>
+<input class="form-input flex w-full rounded-lg text-slate-900 dark:text-slate-100 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-1 focus:ring-primary h-10 pl-7 pr-3 text-sm" type="number" value="1800.00"/>
+</div>
+</label>
+<label class="flex flex-col gap-1.5">
+<span class="text-slate-600 dark:text-slate-400 text-[10px] font-bold uppercase tracking-widest">Patient Owes</span>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">$</span>
+<input class="form-input flex w-full rounded-lg text-slate-900 dark:text-slate-100 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-1 focus:ring-primary h-10 pl-7 pr-3 text-sm" type="number" value="360.00"/>
+</div>
+</label>
+<label class="flex flex-col gap-1.5">
+<span class="text-slate-600 dark:text-slate-400 text-[10px] font-bold uppercase tracking-widest">Margin</span>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-primary font-bold text-sm">%</span>
+<input class="form-input flex w-full rounded-lg text-primary font-bold border-primary/20 bg-primary/5 dark:bg-primary/10 h-10 pl-8 pr-3 text-sm cursor-not-allowed" readonly="" type="number" value="30.5"/>
+</div>
+</label>
+</div>
+</section>
+</div>
+</div>
+<div class="sticky bottom-0 z-10 border-t border-slate-100 dark:border-slate-800 p-6 flex justify-end gap-3 bg-background-light dark:bg-background-dark">
+<button class="px-5 h-10 rounded-lg text-slate-600 dark:text-slate-300 text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                    Cancel
+                </button>
+<button class="px-6 h-10 bg-primary text-white rounded-lg text-sm font-semibold hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">save</span>
+                    Save Order
+                </button>
+</div>
+</div>
+</div>
+
+</body></html>

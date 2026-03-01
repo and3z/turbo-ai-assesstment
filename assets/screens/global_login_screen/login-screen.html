@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<title>Global Login | Medical Logistics</title>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark min-h-screen flex items-center justify-center antialiased">
+<!-- Main Container -->
+<div class="w-full max-w-md p-6">
+<!-- Logo/Header Section -->
+<div class="flex flex-col items-center mb-8">
+<div class="bg-primary/10 p-3 rounded-xl mb-4">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1">
+                    medical_services
+                </span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-2xl font-bold tracking-tight">Medical Logistics</h2>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Supply Chain Distribution Management</p>
+</div>
+<!-- Login Card -->
+<div class="bg-white dark:bg-slate-900 shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-200 dark:border-slate-800 rounded-xl p-8">
+<div class="mb-6">
+<h1 class="text-slate-900 dark:text-slate-100 text-xl font-semibold mb-2">Global Login</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Enter your secure passcode to access the internal distribution dashboard.</p>
+</div>
+<!-- Illustration Placeholder -->
+<div class="w-full h-32 mb-8 overflow-hidden rounded-lg bg-primary/5 border border-primary/10">
+<img alt="Medical Facility Illustration" class="w-full h-full object-cover opacity-60 mix-blend-multiply dark:mix-blend-normal" data-alt="Professional sterile medical laboratory environment background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh7a9f-Bpe--Lf2DR3DSY50jIhIQM5j9AuytgKdQJfYLnFVNqrUrBe7Y56ZAvuAW_dT9NyossQUmFy8gJg4sIimuvy_EBvuACjoO4ffz2gM6O4cVs4Bqosq66K6DJsbMz0hiW9Pfc5RJf7GjwjXYUPUEOsyn7AUnuG7O301zC2qdDwLlEzxynd8QA5hAlwKQIQ7CVy5WPMf08mHDJhyvSw9vbC3khyYE_KSZ1__9P7J5N2_uGRavnyI9K6Oz6ph6BPgk0GoUzGj3vE"/>
+</div>
+<form class="space-y-6" onsubmit="return false;">
+<!-- Passcode Input -->
+<div class="space-y-2">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="passcode">
+                        Global Passcode
+                    </label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">
+                            lock
+                        </span>
+<input class="block w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" id="passcode" name="passcode" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<!-- Login Button -->
+<button class="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-4 rounded-lg shadow-sm shadow-primary/20 transition-all active:scale-[0.98]" type="submit">
+<span>Access Dashboard</span>
+<span class="material-symbols-outlined text-sm">
+                        arrow_forward
+                    </span>
+</button>
+</form>
+<!-- Support Footer -->
+<div class="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center text-xs text-slate-400">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">verified_user</span>
+                    Secure Access
+                </span>
+<a class="hover:text-primary transition-colors" href="#">Forgot passcode? Contact IT</a>
+</div>
+</div>
+<!-- System Status Footer -->
+<div class="mt-8 text-center">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-200/50 dark:bg-slate-800 text-[10px] font-medium text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+</span>
+                Server Status: Operational
+            </div>
+</div>
+</div>
+</body></html>

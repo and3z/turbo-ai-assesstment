@@ -1,0 +1,2 @@
+patient_first_name,patient_last_name,shipping_address,product_details,vendor_name,vendor_email,financial_cost_per_unit,financial_billable_amount,financial_coverage_pct,payment_state,vendor_state
+Jamie,Rivera,"991 Eastlake Dr, Dallas, TX 75001","Compression sleeve, medium, left leg",MediFlow Partners,orders@mediflow.test,42.00,124.50,82.5,Paid,Waiting
